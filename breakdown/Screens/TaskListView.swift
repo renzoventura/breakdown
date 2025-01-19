@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct TaskListView: View {
-    @StateObject private var viewModel = TaskViewModel()
+    @EnvironmentObject private var viewModel : TaskViewModel
     @State private var newTitle : String = ""
-    
+    @State private var showingAddTodo = false
+
     var body: some View {
         NavigationView {
             VStack (alignment: .center) {
@@ -20,22 +21,15 @@ struct TaskListView: View {
                 }
                 Text("Your Tasks (4)")
                 Text("This is your list of tasks")
-                
-                TextField("Create your task", text: $newTitle)
                 Button(action: {
-                    if(!newTitle.isEmpty) {
-                        viewModel.addTask(newTitle)
-                        newTitle = ""
-                    } else {
-                        print("ERROR")
-                    }
+                    showingAddTodo = true
                 }) {
-                    Text("add")
+                    Text("Create a to do item")
                 }
                 ForEach(viewModel.tasks) { task in
                     HStack {
                         //LEARN WHATS HAPPENING -
-                        //Binding get set
+                        //Binding get set??
                         //the function being passed {} (anon function?)
                         Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
                             Text(task.title).strikethrough(task.isDone)
@@ -44,10 +38,12 @@ struct TaskListView: View {
                 }
                 Spacer()
             }.padding(16)
+        }.sheet(isPresented: $showingAddTodo) {
+            AddTaskView()
         }
     }
 }
 
 #Preview {
-    TaskListView()
+    TaskListView().environmentObject(TaskViewModel())
 }
