@@ -18,9 +18,16 @@ class TaskViewModel : ObservableObject {
     
     //LEARN is withID namedParameter?
     func toggleItem(withId id: UUID) {
+        print("ITEMS")
         if let index = tasks.firstIndex(where: {$0.id == id}) {
+            print("UPDATE!")
             tasks[index].isDone.toggle()
+        } else {
+            print("NO UPDATE")
         }
     }
+    
+    
+    //Create a function that returns the TASK by id and return it as a binding item so that both screens can listen to such item
     
 }

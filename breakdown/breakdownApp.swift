@@ -11,7 +11,7 @@ import SwiftUI
 struct breakdownApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(TaskViewModel()) //LEARN here we are creating taskViewMode to have one instance for VM to be accessed everywhere
+            TaskListView().environmentObject(TaskViewModel()) //LEARN here we are creating taskViewMode to have one instance for VM to be accessed everywhere
         }
     }
 }
