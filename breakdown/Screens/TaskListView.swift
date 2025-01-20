@@ -32,7 +32,7 @@ struct TaskListView: View {
                         //Binding get set??
                         //the function being passed {} (anon function?)
                         Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
-                            NavigationLink(destination: TaskDetailView(task: $task)) {
+                            NavigationLink(destination: TaskDetailView(task: task)) {
                                 Text(task.title).strikethrough(task.isDone)
                             }
                         }

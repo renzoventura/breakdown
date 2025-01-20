@@ -30,4 +30,12 @@ class TaskViewModel : ObservableObject {
     
     //Create a function that returns the TASK by id and return it as a binding item so that both screens can listen to such item
     
+    func getTaskById(withId id: UUID) -> Task? {
+        if let index = tasks.firstIndex(where: {$0.id == id}) {
+            return tasks[index];
+        } else {
+            return nil;
+        }
+    }
+    
 }

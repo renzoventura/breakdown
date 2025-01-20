@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskDetailView: View {
-    @Binding var task: Task
+    var task: Task
     @EnvironmentObject var viewModel : TaskViewModel
     
     var body: some View {
@@ -16,7 +16,7 @@ struct TaskDetailView: View {
             Text("THIS IS THE DETAILED VIEW")
             Text(task.title)
             Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
-                NavigationLink(destination: TaskDetailView(task: $task)) {
+                NavigationLink(destination: TaskDetailView(task: viewModel.getTaskById(withId: task.id)!)) {
                     Text(task.title).strikethrough(task.isDone)
                 }
             }
