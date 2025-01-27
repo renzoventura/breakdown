@@ -32,5 +32,5 @@ struct AddTaskView: View {
 }
 
 #Preview {
-    AddTaskView().environmentObject(TaskViewModel())
+    AddTaskView().environmentObject(mockViewModel)
 }

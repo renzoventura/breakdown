@@ -14,16 +14,24 @@ struct TaskDetailView: View {
     var body: some View {
         VStack {
             Text("THIS IS THE DETAILED VIEW")
+            Spacer()
             Text(task.title)
             Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
                 NavigationLink(destination: TaskDetailView(task: viewModel.getTaskById(withId: task.id)!)) {
                     Text(task.title).strikethrough(task.isDone)
                 }
             }
-        }
+            ForEach(task.subTasks) { subTask in
+                Toggle(isOn: Binding(get: {subTask.isDone}, set: { _ in  })) {
+                        Text(subTask.title).strikethrough(task.isDone)
+                    
+                }
+            }
+            Spacer()
+        }.padding(16)
     }
 }
 
-//#Preview {
-//    TaskDetailView(task: Task(title: "This is a task")).environmentObject(TaskViewModel())
-//}
+#Preview {
+    TaskDetailView(task: mockViewModel.tasks.first!).environmentObject(mockViewModel)
+}

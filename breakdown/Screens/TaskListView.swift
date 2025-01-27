@@ -36,6 +36,9 @@ struct TaskListView: View {
                                 Text(task.title).strikethrough(task.isDone)
                             }
                         }
+                        Text("SubTasks:")
+                        Text("\(task.subTasks.count)")
+                        
                     }
                 }
                 Spacer()
@@ -47,5 +50,5 @@ struct TaskListView: View {
 }
 
 #Preview {
-    TaskListView().environmentObject(TaskViewModel())
+    TaskListView().environmentObject(mockViewModel)
 }
