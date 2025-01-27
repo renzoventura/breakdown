@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Task: Identifiable {
+class Task: Identifiable {
     let id: UUID
     var title: String
     var description: String? // Nullable property
@@ -21,5 +21,13 @@ struct Task: Identifiable {
         self.description = description
         self.isDone = isDone
         self.subTasks = subTasks
+    }
+    
+    func getNumberOfSubTasksDone() -> Int {
+        return subTasks.filter { $0.isDone }.count;
+    }
+    
+    func getNumberOfSubTasks() -> Int {
+        return subTasks.count;
     }
 }

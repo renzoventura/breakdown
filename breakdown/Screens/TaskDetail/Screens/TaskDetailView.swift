@@ -13,9 +13,11 @@ struct TaskDetailView: View {
     
     var body: some View {
         VStack {
-            Text("THIS IS THE DETAILED VIEW")
+            HStack {
+                Text(task.title).font(FontStyles.largeTitle)
+                Spacer()
+            }
             Spacer()
-            Text(task.title)
             Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
                 NavigationLink(destination: TaskDetailView(task: viewModel.getTaskById(withId: task.id)!)) {
                     Text(task.title).strikethrough(task.isDone)

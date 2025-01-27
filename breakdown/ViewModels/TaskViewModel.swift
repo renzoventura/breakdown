@@ -8,9 +8,24 @@
 import Foundation
 
 class TaskViewModel : ObservableObject {
-    @Published var tasks: [Task] = [Task(title: "Task 1", subTasks: [Task(title: "Sub Task 1"),Task(title: "Sub Task 2"),Task(title: "Sub Task 3"),]),
-                                    Task(title: "task 2"),
-                                    Task(title: "task 3"),]
+    @Published var tasks: [Task] = [
+        Task(
+            title: "Complete SwiftUI App",
+            subTasks: [
+                Task(title: "Design UI"),
+                Task(title: "Implement Features"),
+                Task(title: "Test Functionality"),
+            ]
+        ),
+        Task(
+            title: "Prepare for Presentation",
+            subTasks: [
+                Task(title: "Create Slides"),
+                Task(title: "Rehearse Talk"),
+            ]
+        ),
+        Task(title: "Read Swift Documentation"),
+    ]
     
     //LEARN is _ no named parameter or just position? how does it work when you have multiple
     func addTask(_ title: String) {
