@@ -27,31 +27,32 @@ class TaskViewModel : ObservableObject {
         Task(title: "Read Swift Documentation"),
     ]
     
-    //LEARN is _ no named parameter or just position? how does it work when you have multiple
     func addTask(_ title: String) {
         let newTasks = Task(title: title)
         tasks.append(newTasks)
     }
     
-    //LEARN is withID namedParameter?
-    func toggleItem(withId id: UUID) {
-        print("ITEMS")
+    func toggleTask(withId id: UUID) {
         if let index = tasks.firstIndex(where: {$0.id == id}) {
-            print("UPDATE!")
             tasks[index].isDone.toggle()
-        } else {
-            print("NO UPDATE")
         }
     }
-    
-    
-    //Create a function that returns the TASK by id and return it as a binding item so that both screens can listen to such item
     
     func getTaskById(withId id: UUID) -> Task? {
         if let index = tasks.firstIndex(where: {$0.id == id}) {
             return tasks[index];
         } else {
             return nil;
+        }
+    }
+    
+    func toggleSubTask(withParentTaskId parentTaskId: UUID, withSubTaskId subTaskId: UUID) {
+        if let parentTaskIndex = tasks.firstIndex(where: { $0.id == parentTaskId }) {
+            let parentTask = tasks[parentTaskIndex]  // Create a mutable copy of the task cannot just use if var
+            if let subTaskIndex = parentTask.subTasks.firstIndex(where: { $0.id == subTaskId }) {
+                parentTask.subTasks[subTaskIndex].isDone.toggle()
+                tasks[parentTaskIndex] = parentTask  // Update the tasks array
+            }
         }
     }
     

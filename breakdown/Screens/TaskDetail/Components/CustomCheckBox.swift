@@ -6,10 +6,8 @@
 //
 
 import SwiftUI
-
-
 struct CustomCheckbox: View {
-    var isChecked: Bool
+    @Binding var isChecked: Bool
     var action: () -> Void
     var body: some View {
         HStack {

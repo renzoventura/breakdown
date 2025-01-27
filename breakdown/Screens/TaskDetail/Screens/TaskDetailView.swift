@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TaskDetailView: View {
-    var task: Task
+    @State var task: Task
     @EnvironmentObject var viewModel : TaskViewModel
     
     var body: some View {
@@ -19,10 +19,14 @@ struct TaskDetailView: View {
                     Spacer()
                 }
                 VStack {
-                    ForEach(task.subTasks) { subTask in
+                    ForEach(task.subTasks.indices, id: \.self) { index in
                         HStack {
-                            CustomCheckbox(isChecked: subTask.isDone, action: {})
-                            Text(subTask.title).strikethrough(task.isDone)
+                            CustomCheckbox(isChecked: $task.subTasks[index].isDone, action: {
+                                viewModel.toggleSubTask(withParentTaskId: task.id,
+                                                        withSubTaskId: task.subTasks[index].id
+                                )
+                            })
+                            Text(task.subTasks[index].title).strikethrough(task.isDone)
                             Spacer()
                         }
                     }

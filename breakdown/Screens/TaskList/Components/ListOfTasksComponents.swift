@@ -12,7 +12,7 @@ struct ListOfTasksComponents: View {
     var body: some View {
         ForEach(viewModel.tasks) { task in
             HStack {
-                Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
+                Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleTask(withId: task.id)})) {
                     NavigationLink(destination: TaskDetailView(task: task)) {
                         Text(task.title).strikethrough(task.isDone).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
                     }
@@ -22,7 +22,6 @@ struct ListOfTasksComponents: View {
                     Text("\(task.getNumberOfSubTasksDone())")
                     Text("/")
                     Text("\(task.getNumberOfSubTasks())")
-                    
                 }
             }
         }

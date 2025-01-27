@@ -28,7 +28,7 @@ struct TaskListView: View {
                 }
                 ListOfTasksComponents()
                 Spacer()
-            }.padding(16)
+            }.padding()
         }.sheet(isPresented: $showingAddTodo) {
             AddTaskView()
         }
