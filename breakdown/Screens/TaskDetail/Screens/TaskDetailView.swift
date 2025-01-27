@@ -12,25 +12,24 @@ struct TaskDetailView: View {
     @EnvironmentObject var viewModel : TaskViewModel
     
     var body: some View {
-        VStack {
-            HStack {
-                Text(task.title).font(FontStyles.largeTitle)
+        NavigationView {
+            VStack {
+                HStack {
+                    Text(task.title).font(FontStyles.largeTitle)
+                    Spacer()
+                }
+                VStack {
+                    ForEach(task.subTasks) { subTask in
+                        HStack {
+                            CustomCheckbox(isChecked: subTask.isDone, action: {})
+                            Text(subTask.title).strikethrough(task.isDone)
+                            Spacer()
+                        }
+                    }
+                }
                 Spacer()
-            }
-            Spacer()
-            Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleItem(withId: task.id)})) {
-                NavigationLink(destination: TaskDetailView(task: viewModel.getTaskById(withId: task.id)!)) {
-                    Text(task.title).strikethrough(task.isDone)
-                }
-            }
-            ForEach(task.subTasks) { subTask in
-                Toggle(isOn: Binding(get: {subTask.isDone}, set: { _ in  })) {
-                        Text(subTask.title).strikethrough(task.isDone)
-                    
-                }
-            }
-            Spacer()
-        }.padding(16)
+            }.padding(16)
+        }
     }
 }
 

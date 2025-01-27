@@ -10,13 +10,12 @@ import Foundation
 class Task: Identifiable {
     let id: UUID
     var title: String
-    var description: String? // Nullable property
-    var isDone: Bool = false // Default value for isDone
+    var description: String?
+    var isDone: Bool = false
     var subTasks : [Task] = []
     
-    // Initializer
     init(title: String, description: String? = nil, isDone: Bool = false, subTasks: [Task] = []) {
-        self.id = UUID() // Automatically generate a new UUID
+        self.id = UUID()
         self.title = title
         self.description = description
         self.isDone = isDone
