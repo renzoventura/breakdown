@@ -14,8 +14,8 @@ struct CustomCheckbox: View {
             Button(action: action) {
                 ZStack {
                     Circle()
-                        .strokeBorder(Color.gray, lineWidth: 2)
-                        .background(Circle().fill(isChecked ? Color.blue : Color.white))
+                        .strokeBorder(Color.gray, lineWidth: isChecked ? 1 :  2)
+                        .background(Circle().fill(isChecked ? Color.green : Color.white))
                         .frame(width: 24, height: 24)
                     if isChecked {
                         Image(systemName: "checkmark")

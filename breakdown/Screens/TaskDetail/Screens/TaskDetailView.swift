@@ -17,6 +17,12 @@ struct TaskDetailView: View {
                 HStack {
                     Text(task.title).font(FontStyles.largeTitle)
                     Spacer()
+                }.padding(.bottom, 4)
+                 HStack {
+                    Text("Tasks: ")
+                    Text("\(task.getProgressOfSubTasks())")
+                        .font(FontStyles.subtitle)
+                    Spacer()
                 }
                 VStack {
                     ForEach(task.subTasks.indices, id: \.self) { index in
@@ -32,7 +38,7 @@ struct TaskDetailView: View {
                     }
                 }
                 Spacer()
-            }.padding(16)
+            }.padding()
         }
     }
 }

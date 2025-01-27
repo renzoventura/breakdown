@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct showCreateNewTaskButton: View {
+struct ShowCreateNewTaskButton: View {
     var action: () -> Void //Callback closeure
     var body: some View {
         Button(action: action) {

@@ -29,4 +29,8 @@ class Task: Identifiable {
     func getNumberOfSubTasks() -> Int {
         return subTasks.count;
     }
+    
+    func getProgressOfSubTasks() -> String {
+        return "\(getNumberOfSubTasksDone()) / \(getNumberOfSubTasks())";
+    }
 }

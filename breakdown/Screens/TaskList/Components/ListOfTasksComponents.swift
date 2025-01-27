@@ -11,19 +11,20 @@ struct ListOfTasksComponents: View {
     @EnvironmentObject private var viewModel : TaskViewModel
     var body: some View {
         ForEach(viewModel.tasks) { task in
-            HStack {
-                Toggle(isOn: Binding(get: {task.isDone}, set: {_ in viewModel.toggleTask(withId: task.id)})) {
-                    NavigationLink(destination: TaskDetailView(task: task)) {
-                        Text(task.title).strikethrough(task.isDone).frame(maxWidth: .infinity, alignment: .leading).multilineTextAlignment(.leading)
-                    }
+            VStack(alignment: .leading, content: {
+                NavigationLink(destination: TaskDetailView(task: task)) {
+                    Text(task.title).strikethrough(task.isDone)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
+                        .font(FontStyles.headline)
+                }.padding(.bottom, 0.2)
+                HStack(alignment: .bottom) {
+                    Text("Tasks:")
+                        .font(FontStyles.subtitle)
+                    Text("\(task.getProgressOfSubTasks())")
+                        .font(FontStyles.subtitleBold)
                 }
-                Text("SubTasks:")
-                HStack {
-                    Text("\(task.getNumberOfSubTasksDone())")
-                    Text("/")
-                    Text("\(task.getNumberOfSubTasks())")
-                }
-            }
+            }).padding(.vertical, 3)
         }
     }
 }

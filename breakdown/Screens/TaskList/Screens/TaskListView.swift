@@ -22,7 +22,7 @@ struct TaskListView: View {
                 HStack {
                     Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
                     Spacer()
-                    showCreateNewTaskButton {
+                    ShowCreateNewTaskButton {
                         showingAddTodo = true
                     }
                 }
