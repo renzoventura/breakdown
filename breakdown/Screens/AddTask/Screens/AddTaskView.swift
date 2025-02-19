@@ -13,7 +13,8 @@ struct AddTaskView: View {
     @State private var newTitle = "";
     @State var errorMessage : String?
     @EnvironmentObject private var viewModel : TaskViewModel
-    
+    @State private var selectedIndex = 0
+
     var body: some View {
         VStack (alignment: .leading, content:{
             CloseButton(action: {
@@ -29,6 +30,10 @@ struct AddTaskView: View {
                         .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                 )
                 .frame(maxWidth: .infinity)
+            ComplexitySlider(selectedIndex: $selectedIndex)
+            
+            Text("Lets break your task down to \(viewModel.getNumberOfTasksBySelectedIndex(selectedIndex)) steps")
+            
             if let error = errorMessage {
                        Text(error)
                            .font(.caption)
@@ -37,7 +42,7 @@ struct AddTaskView: View {
                    }
             Button(action: {
                 if(!newTitle.isEmpty) {
-                    viewModel.addTask(newTitle)
+                    viewModel.addTask(newTitle, numberOfTask: String(selectedIndex))
                     newTitle = ""
                     presentationMode.wrappedValue.dismiss()
                 } else {
@@ -62,3 +67,4 @@ struct AddTaskView: View {
 #Preview {
     AddTaskView().environmentObject(mockViewModel)
 }
+

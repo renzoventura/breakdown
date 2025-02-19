@@ -34,3 +34,4 @@ class Task: Identifiable {
         return "\(getNumberOfSubTasksDone()) / \(getNumberOfSubTasks())";
     }
 }
+
