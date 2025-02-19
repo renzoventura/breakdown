@@ -12,21 +12,18 @@ struct ComplexitySlider: View {
     @State private var sliderValue: Double = 0.0
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Minimal")
-                Slider(
-                    value: $sliderValue,
-                    in: 0...2,
-                    step: 1,
-                    onEditingChanged: { _ in
-                        selectedIndex = Int(sliderValue)
-                    }
-                )
-                .padding()
-                Text("Complex")
-            }
-            Text("\(selectedIndex)")
+        HStack {
+            Text("Minimal")
+            Slider(
+                value: $sliderValue,
+                in: 0...2,
+                step: 1,
+                onEditingChanged: { _ in
+                    selectedIndex = Int(sliderValue)
+                }
+            )
+            .padding()
+            Text("Complex")
         }
     }
 }
