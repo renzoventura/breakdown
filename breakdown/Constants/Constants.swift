@@ -7,10 +7,14 @@
 
 import Foundation
 
-let listOfComplexityItems : [ComplexitySliderItem] = [
+let listOfComplexityItems: [ComplexitySliderItem] = [
     ComplexitySliderItem(title: "Minimal", numberOfItems: 3),
-    ComplexitySliderItem(title: "Average", numberOfItems: 5),
-    ComplexitySliderItem(title: "Complex", numberOfItems: 10),
+    ComplexitySliderItem(title: "Simple", numberOfItems: 5),
+    ComplexitySliderItem(title: "Average", numberOfItems: 8),
+    ComplexitySliderItem(title: "Moderate", numberOfItems: 10),
+    ComplexitySliderItem(title: "Complex", numberOfItems: 13),
+    ComplexitySliderItem(title: "Intricate", numberOfItems: 15),
+    ComplexitySliderItem(title: "Extreme", numberOfItems: 20)
 ]
 
 let mockTasks: [Task] = [

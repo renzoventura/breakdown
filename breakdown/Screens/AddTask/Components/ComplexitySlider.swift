@@ -15,7 +15,7 @@ struct ComplexitySlider: View {
             Text("Minimal")
             Slider(
                 value: $sliderValue,
-                in: 0...2,
+                in: 0...Double(listOfComplexityItems.count - 1) ,
                 step: 1,
                 onEditingChanged: { _ in
                     viewModel.currSelectedSliderItem = listOfComplexityItems[Int(sliderValue)]

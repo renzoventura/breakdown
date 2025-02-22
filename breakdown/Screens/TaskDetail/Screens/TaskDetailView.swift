@@ -24,16 +24,18 @@ struct TaskDetailView: View {
                         .font(FontStyles.subtitle)
                     Spacer()
                 }
-                VStack {
-                    ForEach(task.subTasks.indices, id: \.self) { index in
-                        HStack {
-                            CustomCheckbox(isChecked: $task.subTasks[index].isDone, action: {
-                                viewModel.toggleSubTask(withParentTaskId: task.id,
-                                                        withSubTaskId: task.subTasks[index].id
-                                )
-                            })
-                            Text(task.subTasks[index].title).strikethrough(task.isDone)
-                            Spacer()
+                ScrollView {
+                    VStack {
+                        ForEach(task.subTasks.indices, id: \.self) { index in
+                            HStack {
+                                CustomCheckbox(isChecked: $task.subTasks[index].isDone, action: {
+                                    viewModel.toggleSubTask(withParentTaskId: task.id,
+                                                            withSubTaskId: task.subTasks[index].id
+                                    )
+                                })
+                                Text(task.subTasks[index].title).strikethrough(task.isDone)
+                                Spacer()
+                            }
                         }
                     }
                 }
