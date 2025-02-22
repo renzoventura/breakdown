@@ -36,8 +36,12 @@ struct AddTaskView: View {
                     .padding(.vertical, 8)
             }
             if viewModel.isLoading {
-                ProgressView("Loading...")
-                    .progressViewStyle(CircularProgressViewStyle())
+                HStack {
+                    Spacer()
+                    ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle())
+                    Spacer()
+                }
             } else {
                 Button(action: {
                     viewModel.addTask(completion: {
