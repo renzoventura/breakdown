@@ -13,3 +13,20 @@ let listOfComplexityItems : [ComplexitySliderItem] = [
     ComplexitySliderItem(title: "Complex", numberOfItems: 10),
 ]
 
+let mockTasks: [Task] = [
+    Task(
+        title: "Complete SwiftUI App",
+        subTasks: [
+            Task(title: "Design UI"),
+            Task(title: "Implement Features"),
+            Task(title: "Test Functionality"),
+        ]
+    ),
+    Task(
+        title: "Prepare for Presentation",
+        subTasks: [
+            Task(title: "Create Slides"),
+            Task(title: "Rehearse Talk"),
+        ]
+    ),
+]

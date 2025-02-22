@@ -11,7 +11,6 @@ struct AddTaskView: View {
     //what is this code doing? @Environment the (/ etc)
     @Environment(\ .presentationMode) var presentationMode
     @State private var newTitle = "";
-    @State var errorMessage : String?
     @EnvironmentObject private var viewModel : TaskViewModel
 
     var body: some View {
@@ -30,32 +29,40 @@ struct AddTaskView: View {
                 )
                 .frame(maxWidth: .infinity)
             ComplexitySlider()
-            Text("Lets break your task down to \(String(viewModel.currentSelectedComplexityItem.numberOfItems)) steps")
-            if let error = errorMessage {
-                       Text(error)
-                           .font(.caption)
-                           .foregroundColor(.red)
-                           .padding(.vertical, 8)
-                   }
-            Button(action: {
-                if(!newTitle.isEmpty) {
-                    viewModel.addTask(newTitle)
-                    newTitle = ""
-                    presentationMode.wrappedValue.dismiss()
-                } else {
-                    errorMessage = "Please describe your message."
-                }
-            }) {
-                Text("Break down task 🔥")
-                    .font(.system(size: 16, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 12)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(25)
-                    .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 3)
+            Text("Lets break your task down to \(String(viewModel.currSelectedSliderItem.numberOfItems)) steps")
+            if let error = viewModel.errorMessageAddTask {
+                Text(error)
+                    .font(.caption)
+                    .foregroundColor(.red)
+                    .padding(.vertical, 8)
             }
+            if viewModel.isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle())
+            } else {
+                Button(action: {
+                    if(!newTitle.isEmpty) {
+                        viewModel.addTask(newTitle, completion: {
+                            presentationMode.wrappedValue.dismiss()
+                        })
+                        newTitle = ""
+                        
+                    } else {
+                        viewModel.errorMessageAddTask = "Please describe your message."
+                    }
+                }) {
+                    Text("Break down task 🔥")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 12)
+                        .frame(maxWidth: .infinity)
+                        .background(Color.blue)
+                        .cornerRadius(25)
+                        .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 3)
+                }
+            }
+       
             Spacer()
         }).padding()
     }

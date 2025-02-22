@@ -18,7 +18,7 @@ struct ComplexitySlider: View {
                 in: 0...2,
                 step: 1,
                 onEditingChanged: { _ in
-                    viewModel.currentSelectedComplexityItem = listOfComplexityItems[Int(sliderValue)]
+                    viewModel.currSelectedSliderItem = listOfComplexityItems[Int(sliderValue)]
                 }
             )
             .padding()

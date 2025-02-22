@@ -8,35 +8,30 @@
 import Foundation
 
 class TaskViewModel : ObservableObject {
-    @Published var tasks: [Task] = [
-        Task(
-            title: "Complete SwiftUI App",
-            subTasks: [
-                Task(title: "Design UI"),
-                Task(title: "Implement Features"),
-                Task(title: "Test Functionality"),
-            ]
-        ),
-        Task(
-            title: "Prepare for Presentation",
-            subTasks: [
-                Task(title: "Create Slides"),
-                Task(title: "Rehearse Talk"),
-            ]
-        ),
-    ]
-    
-    @Published var currentSelectedComplexityItem : ComplexitySliderItem = listOfComplexityItems.first!;
+    @Published var tasks: [Task] = mockTasks
+    @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
+    @Published var errorMessageAddTask : String?
+    @Published var isLoading : Bool = false;
 
     private let taskRepository = TaskRepository()
     
-    func addTask(_ title: String) {
-        let numberToBreakDown = currentSelectedComplexityItem.numberOfItems
+    func addTask(_ title: String, completion: @escaping () -> Void) {
+        self.errorMessageAddTask = nil
+        self.isLoading = true
+        let numberToBreakDown = currSelectedSliderItem.numberOfItems
         taskRepository.fetchSubTasks(for: title, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
+            
             DispatchQueue.main.async {
-                let newTask = Task(title: title, subTasks: subTasks ?? [])
-                self?.tasks.append(newTask)
+                if(subTasks != nil && !(subTasks?.isEmpty ?? true)) {
+                    let newTask = Task(title: title, subTasks: subTasks ?? [])
+                    self?.tasks.append(newTask)
+                } else {
+                    self!.errorMessageAddTask = "Failed to create error message";
+                }
+                self!.isLoading = false
+                completion()
             }
+            
         }
     }
     
