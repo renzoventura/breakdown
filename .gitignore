@@ -12,6 +12,7 @@ xcuserdata/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.xcconfig
 
 ## Playgrounds
 timeline.xctimeline

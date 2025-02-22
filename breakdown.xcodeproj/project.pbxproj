@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C910F42A2D69BE1D00FBCAFB /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C99B063B2D38B1F700D8628B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,14 +28,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C910F4292D69BE1D00FBCAFB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C99B062A2D38B1F600D8628B /* breakdown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = breakdown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99B063A2D38B1F700D8628B /* breakdownTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = breakdownTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C99B06442D38B1F700D8628B /* breakdownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = breakdownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C910F42C2D69BF2900FBCAFB /* Exceptions for "breakdown" folder in "breakdown" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C99B06292D38B1F600D8628B /* breakdown */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C99B062C2D38B1F600D8628B /* breakdown */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C910F42C2D69BF2900FBCAFB /* Exceptions for "breakdown" folder in "breakdown" target */,
+			);
 			path = breakdown;
 			sourceTree = "<group>";
 		};
@@ -75,6 +93,7 @@
 		C99B06212D38B1F600D8628B = {
 			isa = PBXGroup;
 			children = (
+				C910F4292D69BE1D00FBCAFB /* Config.xcconfig */,
 				C99B062C2D38B1F600D8628B /* breakdown */,
 				C99B063D2D38B1F700D8628B /* breakdownTests */,
 				C99B06472D38B1F700D8628B /* breakdownUITests */,
@@ -212,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C910F42A2D69BE1D00FBCAFB /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +291,7 @@
 /* Begin XCBuildConfiguration section */
 		C99B064C2D38B1F700D8628B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -334,6 +355,7 @@
 		};
 		C99B064D2D38B1F700D8628B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -390,6 +412,7 @@
 		};
 		C99B064F2D38B1F700D8628B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -398,6 +421,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"breakdown/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = breakdown/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -418,6 +442,7 @@
 		};
 		C99B06502D38B1F700D8628B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -426,6 +451,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"breakdown/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = breakdown/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,6 +472,7 @@
 		};
 		C99B06522D38B1F700D8628B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +491,7 @@
 		};
 		C99B06532D38B1F700D8628B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +510,7 @@
 		};
 		C99B06552D38B1F700D8628B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -498,6 +527,7 @@
 		};
 		C99B06562D38B1F700D8628B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C910F4292D69BE1D00FBCAFB /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

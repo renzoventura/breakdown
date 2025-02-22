@@ -8,12 +8,19 @@
 import Foundation
 
 class TaskRepository {
+    
+    var geminiKey: String = ""
 
     func fetchSubTasks(for task: String, taskNumber: String, completion: @escaping ([Task]?) -> Void) {
-        guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=REDACTED") else {
+        if let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String {
+            geminiKey = apiKey
+        }
+        guard let url = URL(string: "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=\(geminiKey)") else {
             completion(nil)
             return
         }
+        
+        print(url)
         
         let prompt : String = "Breakdown this task into \(taskNumber) simple to do items: \(task) = str\n\n**Return only the list of to-do items as a JSON array.**"
         
