@@ -7,8 +7,7 @@
 
 import SwiftUI
 struct ComplexitySlider: View {
-    @Binding var selectedIndex: Int
-
+    @EnvironmentObject private var viewModel : TaskViewModel
     @State private var sliderValue: Double = 0.0
 
     var body: some View {
@@ -19,7 +18,7 @@ struct ComplexitySlider: View {
                 in: 0...2,
                 step: 1,
                 onEditingChanged: { _ in
-                    selectedIndex = Int(sliderValue)
+                    viewModel.currentSelectedComplexityItem = listOfComplexityItems[Int(sliderValue)]
                 }
             )
             .padding()

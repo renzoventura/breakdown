@@ -7,12 +7,6 @@
 
 import Foundation
 
-var complexityToNumberOfTask : [String: Int] = [
-    "0": 3,
-    "1": 5,
-    "2": 10,
-]
-
 class TaskViewModel : ObservableObject {
     @Published var tasks: [Task] = [
         Task(
@@ -31,20 +25,14 @@ class TaskViewModel : ObservableObject {
             ]
         ),
     ]
+    
+    @Published var currentSelectedComplexityItem : ComplexitySliderItem = listOfComplexityItems.first!;
 
     private let taskRepository = TaskRepository()
     
-    func getNumberOfTasksBySelectedIndex(_ index : Int) -> String {
-        return String(complexityToNumberOfTask[String(index)] ?? 3)
-    }
-
-    func addTask(_ title: String, numberOfTask taskNumber : String) {
-        let numberToBreakDown = complexityToNumberOfTask[taskNumber]
-        print("RENZO")
-        print(taskNumber)
-        print(numberToBreakDown!)
-        print("RENZO")
-        taskRepository.fetchSubTasks(for: title, taskNumber: String(numberToBreakDown!)) { [weak self] subTasks in
+    func addTask(_ title: String) {
+        let numberToBreakDown = currentSelectedComplexityItem.numberOfItems
+        taskRepository.fetchSubTasks(for: title, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
             DispatchQueue.main.async {
                 let newTask = Task(title: title, subTasks: subTasks ?? [])
                 self?.tasks.append(newTask)

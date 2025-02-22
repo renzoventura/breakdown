@@ -53,12 +53,6 @@ class TaskRepository {
 
                     let subTasks = toDoItems.map { Task(title: $0) }
                     completion(subTasks)
-//                    print("RENZO parts")
-                    print(text)
-//                    let result = extractStrings(from: parts)
-//                    result.forEach { print($0) }
-//                    print("RENZO")
-                    
                 } else {
                     print("Invalid JSON structure")
                     completion(nil)
