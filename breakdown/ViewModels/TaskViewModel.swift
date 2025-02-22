@@ -12,27 +12,33 @@ class TaskViewModel : ObservableObject {
     @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
     @Published var errorMessageAddTask : String?
     @Published var isLoading : Bool = false;
+    @Published var newTodoItem : String = ""
 
     private let taskRepository = TaskRepository()
     
-    func addTask(_ title: String, completion: @escaping () -> Void) {
-        self.errorMessageAddTask = nil
-        self.isLoading = true
+    func addTask(completion: @escaping () -> Void) {
         let numberToBreakDown = currSelectedSliderItem.numberOfItems
-        taskRepository.fetchSubTasks(for: title, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
-            
-            DispatchQueue.main.async {
-                if(subTasks != nil && !(subTasks?.isEmpty ?? true)) {
-                    let newTask = Task(title: title, subTasks: subTasks ?? [])
-                    self?.tasks.append(newTask)
-                } else {
-                    self!.errorMessageAddTask = "Failed to create error message";
+        if (!newTodoItem.isEmpty) {
+            self.errorMessageAddTask = nil
+            self.isLoading = true
+            taskRepository.fetchSubTasks(for: newTodoItem, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
+                DispatchQueue.main.async {
+                    if(subTasks != nil && !(subTasks?.isEmpty ?? true)) {
+                        let newTask = Task(title: self!.newTodoItem, subTasks: subTasks ?? [])
+                        self?.tasks.append(newTask)
+                        self!.newTodoItem = ""
+                        completion()
+                    } else {
+                        self!.errorMessageAddTask = "Failed to create error message";
+                    }
+                    self!.isLoading = false
                 }
-                self!.isLoading = false
-                completion()
+                
             }
-            
+        } else {
+            self.errorMessageAddTask = "Please enter your new todo";
         }
+    
     }
     
     func toggleTask(withId id: UUID) {

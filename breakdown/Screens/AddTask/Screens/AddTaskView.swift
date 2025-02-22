@@ -10,7 +10,6 @@ import SwiftUI
 struct AddTaskView: View {
     //what is this code doing? @Environment the (/ etc)
     @Environment(\ .presentationMode) var presentationMode
-    @State private var newTitle = "";
     @EnvironmentObject private var viewModel : TaskViewModel
 
     var body: some View {
@@ -20,7 +19,7 @@ struct AddTaskView: View {
             })
             Text("Create new task").font(FontStyles.largeTitle)
     
-            TextField("Describe your task", text: $newTitle)
+            TextField("Describe your task", text: $viewModel.newTodoItem)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)
                 .background(
@@ -41,15 +40,9 @@ struct AddTaskView: View {
                     .progressViewStyle(CircularProgressViewStyle())
             } else {
                 Button(action: {
-                    if(!newTitle.isEmpty) {
-                        viewModel.addTask(newTitle, completion: {
-                            presentationMode.wrappedValue.dismiss()
-                        })
-                        newTitle = ""
-                        
-                    } else {
-                        viewModel.errorMessageAddTask = "Please describe your message."
-                    }
+                    viewModel.addTask(completion: {
+                        presentationMode.wrappedValue.dismiss()
+                    })
                 }) {
                     Text("Break down task 🔥")
                         .font(.system(size: 16, weight: .bold))
