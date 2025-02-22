@@ -23,6 +23,7 @@ struct TaskListView: View {
                     Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
                     Spacer()
                     ShowCreateNewTaskButton {
+                        viewModel.resetSliderItem()
                         showingAddTodo = true
                     }
                 }

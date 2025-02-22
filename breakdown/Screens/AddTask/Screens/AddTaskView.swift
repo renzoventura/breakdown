@@ -28,6 +28,7 @@ struct AddTaskView: View {
                 )
                 .frame(maxWidth: .infinity)
             ComplexitySlider()
+            Text("Level of complexity: \(viewModel.currSelectedSliderItem.title)")
             Text("Lets break your task down to \(String(viewModel.currSelectedSliderItem.numberOfItems)) steps")
             if let error = viewModel.errorMessageAddTask {
                 Text(error)

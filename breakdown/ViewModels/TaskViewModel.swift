@@ -16,6 +16,10 @@ class TaskViewModel : ObservableObject {
 
     private let taskRepository = TaskRepository()
     
+    func resetSliderItem() {
+        currSelectedSliderItem = listOfComplexityItems.first!;
+    }
+    
     func addTask(completion: @escaping () -> Void) {
         let numberToBreakDown = currSelectedSliderItem.numberOfItems
         if (!newTodoItem.isEmpty) {
