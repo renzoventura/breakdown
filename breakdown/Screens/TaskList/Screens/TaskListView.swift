@@ -26,9 +26,18 @@ struct TaskListView: View {
                         viewModel.resetSliderItem()
                         showingAddTodo = true
                     }
-                } 
-                ListOfTasksComponents()
-                Spacer()
+                }
+                if viewModel.tasks.isEmpty {
+                    VStack {
+                        Spacer()
+                        Text("No tasks")
+                        Text("yet...")
+                        Spacer()
+                    }
+                } else {
+                    ListOfTasksComponents()
+                    Spacer()
+                }
             }.padding()
         }.sheet(isPresented: $showingAddTodo) {
             AddTaskView()

@@ -27,5 +27,6 @@ struct ListOfTasksComponents: View {
                 Text(task.getFormattedDate())
             }).padding(.vertical, 3)
         }
+ 
     }
 }
