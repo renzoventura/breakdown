@@ -24,6 +24,7 @@ struct ListOfTasksComponents: View {
                     Text("\(task.getProgressOfSubTasks())")
                         .font(FontStyles.subtitleBold)
                 }
+                Text(task.getFormattedDate())
             }).padding(.vertical, 3)
         }
     }

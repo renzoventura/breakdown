@@ -13,6 +13,7 @@ class Task: Identifiable {
     var description: String?
     var isDone: Bool = false
     var subTasks : [Task] = []
+    var dateCreated: Date
     
     init(title: String, description: String? = nil, isDone: Bool = false, subTasks: [Task] = []) {
         self.id = UUID()
@@ -20,6 +21,7 @@ class Task: Identifiable {
         self.description = description
         self.isDone = isDone
         self.subTasks = subTasks
+        self.dateCreated = Date()
     }
     
     func getNumberOfSubTasksDone() -> Int {
@@ -32,6 +34,14 @@ class Task: Identifiable {
     
     func getProgressOfSubTasks() -> String {
         return "\(getNumberOfSubTasksDone()) / \(getNumberOfSubTasks())";
+    }
+    
+    func getFormattedDate() -> String {
+        let formatter = DateFormatter()
+        //formatter.dateStyle = .medium
+        //formatter.timeStyle = .none
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter.string(from: dateCreated)
     }
 }
 

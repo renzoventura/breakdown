@@ -18,7 +18,6 @@ struct AddTaskView: View {
                 presentationMode.wrappedValue.dismiss()
             })
             Text("Create new task").font(FontStyles.largeTitle)
-    
             TextField("Describe your task", text: $viewModel.newTodoItem)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 16)

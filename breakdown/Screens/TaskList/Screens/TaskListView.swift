@@ -26,7 +26,7 @@ struct TaskListView: View {
                         viewModel.resetSliderItem()
                         showingAddTodo = true
                     }
-                }
+                } 
                 ListOfTasksComponents()
                 Spacer()
             }.padding()
