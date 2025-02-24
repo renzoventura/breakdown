@@ -8,7 +8,7 @@
 import Foundation
 
 class TaskViewModel : ObservableObject {
-    @Published var tasks: [Task] = []
+    @Published var tasks: [Task] = mockTasks
     @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
     @Published var errorMessageAddTask : String?
     @Published var isLoading : Bool = false;

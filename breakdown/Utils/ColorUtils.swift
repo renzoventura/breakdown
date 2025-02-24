@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+
+let primaryColor = Color(hex: "D1A28B")
+let secondaryColor = Color(hex: "E6D9CB")
+let greyColor = Color(hex: "D9D9D9")
+
 var allColors : [[Color]] = [basicPalette, earthyPalette, naturePalette, seaPalette, sunsetPalette,]
 
 var basicPalette: [Color] = [
@@ -102,3 +107,28 @@ extension Color {
     static let peach = Color(red: 1.0, green: 0.75, blue: 0.5)      // Custom Peach
     static let magenta = Color(red: 1.0, green: 0.0, blue: 1.0)   // Custom Magenta
 }
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: Double
+        switch hex.count {
+        case 6: // RGB (no alpha)
+            (a, r, g, b) = (1,
+                            Double((int >> 16) & 0xFF) / 255,
+                            Double((int >> 8) & 0xFF) / 255,
+                            Double(int & 0xFF) / 255)
+        case 8: // ARGB
+            (a, r, g, b) = (Double((int >> 24) & 0xFF) / 255,
+                            Double((int >> 16) & 0xFF) / 255,
+                            Double((int >> 8) & 0xFF) / 255,
+                            Double(int & 0xFF) / 255)
+        default:
+            (a, r, g, b) = (1, 1, 1, 1) // Default to white
+        }
+        self.init(.sRGB, red: r, green: g, blue: b, opacity: a)
+    }
+}
+

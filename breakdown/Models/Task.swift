@@ -43,5 +43,25 @@ class Task: Identifiable {
         formatter.dateFormat = "dd MMM yyyy"
         return formatter.string(from: dateCreated)
     }
+    
+    func calculatePercentage() -> String {
+        return  String(Int(calculateProgress() * 100))
+    }
+    
+    func calculateProgress() -> Double {
+        guard subTasks.count > 0 else {
+            return 0.0
+        }
+        
+        let total = Double(subTasks.count)
+        let completed = Double(subTasks.filter { $0.isDone }.count)
+        
+        guard total > 0 else {
+            return 0.0
+        }
+        
+        return (completed / total)
+    }
 }
 
+ 
