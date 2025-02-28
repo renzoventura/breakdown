@@ -36,13 +36,7 @@ struct AddTaskView: View {
                     .cornerRadius(10)
                     .font(FontStyles.body)
                 if viewModel.newTodoItem.isEmpty {
-                    Text(listOfExamples.randomElement()!)
-                    .font(FontStyles.body)
-                        .foregroundColor(.gray)
-                        .padding(.top, 15)
-                        .padding(.leading, 11)
-                    .padding(.trailing, 8)
-                    .allowsHitTesting(false)
+                    HintText()
                 }
             }
 
@@ -101,3 +95,15 @@ struct AddTaskView: View {
     AddTaskView().environmentObject(mockViewModel)
 }
 
+
+struct HintText: View {
+    var body: some View {
+        Text(listOfExamples.randomElement()!)
+            .font(FontStyles.body)
+            .foregroundColor(.gray)
+            .padding(.top, 15)
+            .padding(.leading, 11)
+            .padding(.trailing, 8)
+            .allowsHitTesting(false)
+    }
+}
