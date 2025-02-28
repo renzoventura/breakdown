@@ -26,7 +26,9 @@ struct TaskListView: View {
   
                 }
                     .padding(.horizontal, 8)
-            }.sheet(isPresented: $showingAddTodo) {
+            }
+            .tint(.black)
+            .sheet(isPresented: $showingAddTodo) {
                 AddTaskView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .presentationDetents([.medium])

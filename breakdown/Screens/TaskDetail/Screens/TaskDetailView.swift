@@ -52,7 +52,7 @@ struct TaskDetailView: View {
                 Spacer()
             }
             .padding()
-        }
+        }.accentColor(.black)
     }
 }
 
