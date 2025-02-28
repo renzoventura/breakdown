@@ -15,6 +15,12 @@ class TaskViewModel : ObservableObject {
     @Published var newTodoItem : String = ""
     @Published var isCompletedFilter : Bool = false;
 
+    @Published var currentSelectedTask : Task?
+    
+    func setCurrentSelectedTask (withSelectedTask selectedTask : Task) {
+        currentSelectedTask = selectedTask
+    }
+
     private let taskRepository = TaskRepository()
     
     func resetSliderItem() {
@@ -24,6 +30,7 @@ class TaskViewModel : ObservableObject {
     var filteredList: [Task] {
         isCompletedFilter ? completedTasks : incompleteTasks
     }
+    
     // Getter for filtered tasks
      var incompleteTasks: [Task] {
          tasks.filter { !$0.isAllTasksDone() }
@@ -74,7 +81,8 @@ class TaskViewModel : ObservableObject {
         }
     }
     
-    func toggleSubTask(withParentTaskId parentTaskId: UUID, withSubTaskId subTaskId: UUID) {
+    func toggleSubTask(withSubTaskId subTaskId: UUID) {
+        let parentTaskId = currentSelectedTask!.id
         if let parentTaskIndex = tasks.firstIndex(where: { $0.id == parentTaskId }) {
             let parentTask = tasks[parentTaskIndex]  // Create a mutable copy of the task cannot just use if var
             if let subTaskIndex = parentTask.subTasks.firstIndex(where: { $0.id == subTaskId }) {

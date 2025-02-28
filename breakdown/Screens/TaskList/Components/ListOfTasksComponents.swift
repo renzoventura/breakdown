@@ -13,7 +13,7 @@ struct ListOfTasksComponents: View {
         ScrollView {
             ForEach(viewModel.filteredList) { task in
                 LazyVStack(alignment: .leading, content: {
-                    NavigationLink(destination: TaskDetailView(task: task)) {
+                    NavigationLink(destination: TaskDetailView()) {
                         let isDone = task.isAllTasksDone()
                         VStack (alignment: .leading){
                             Text(task.title)
@@ -53,13 +53,14 @@ struct ListOfTasksComponents: View {
                         }
                         .padding(8)
                         .overlay(RoundedRectangle(cornerRadius: 8)
-//                            .stroke(isDone ? .blue : greyColor, lineWidth: 3)
                             .stroke(greyColor, lineWidth: 3)
                         )
-//                        .foregroundColor(isDone ? .blue : .black)
                         .contentShape(Rectangle())
                         .transition(.move(edge: .trailing))
                     }
+                    .simultaneousGesture(TapGesture().onEnded {
+                        viewModel.setCurrentSelectedTask(withSelectedTask: task)
+                    })
                     .cornerRadius(8)
                     .buttonStyle(PlainButtonStyle())
  
