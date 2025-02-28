@@ -37,12 +37,13 @@ class TaskViewModel : ObservableObject {
     func addTask(completion: @escaping () -> Void) {
         let numberToBreakDown = currSelectedSliderItem.numberOfItems
         if (!newTodoItem.isEmpty) { 
-            self.errorMessageAddTask = nil
+            self.errorMessageAddTask = nil 
             self.isLoading = true
-            taskRepository.fetchSubTasks(for: newTodoItem, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
+            var taskName = newTodoItem.replacingOccurrences(of: "\n", with: " ")
+            taskRepository.fetchSubTasks(for: taskName, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
                 DispatchQueue.main.async {
                     if(subTasks != nil && !(subTasks?.isEmpty ?? true)) {
-                        let newTask = Task(title: self!.newTodoItem, subTasks: subTasks ?? [])
+                        let newTask = Task(title: taskName, subTasks: subTasks ?? [])
                         self?.tasks.append(newTask)
                         self!.newTodoItem = ""
                         completion()

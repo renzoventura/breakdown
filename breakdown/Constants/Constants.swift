@@ -178,3 +178,13 @@ let multipleMocks: [Task] = [
         ]
     )
 ]
+
+
+var listOfExamples: [String] = [
+    "Prepare a compelling client presentation with structured slides, key talking points, and engaging visuals to leave a lasting impression.",
+    "Follow a structured 12-week training plan to build endurance, improve pace, and successfully complete a half marathon.",
+    "Learn Swift programming from the basics and build a fully functional mobile app with interactive UI and backend integration.",
+    "Declutter every room in your home by sorting, organizing, and optimizing space step by step for a cleaner and stress-free environment.",
+    "Establish a consistent daily meditation and mindfulness practice to reduce stress, improve focus, and enhance overall well-being.",
+    "Plan an affordable yet memorable trip to Japan, including itinerary, budget management, accommodations, and must-visit attractions."
+]
