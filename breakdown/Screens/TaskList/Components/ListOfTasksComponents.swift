@@ -13,8 +13,10 @@ struct ListOfTasksComponents: View {
         if viewModel.filteredList.isEmpty {
             VStack {
                 Spacer()
-                Text(viewModel.isCompletedFilter ? "No finished tasks," : "No tasks yet,")
+                Text(viewModel.isCompletedFilter ? "No finished tasks" : "No tasks yet")
+                    .font(FontStyles.boldBody)
                 Text("Lets get to work!")
+                    .font(FontStyles.boldBody)
                 Spacer()
             }
             .padding(.bottom, 16)
@@ -25,7 +27,7 @@ struct ListOfTasksComponents: View {
                     LazyVStack(alignment: .leading, content: {
                         NavigationLink(destination: TaskDetailView()) {
                             let isDone = task.isAllTasksDone()
-                            VStack (alignment: .leading){
+                            VStack (alignment: .leading) {
                                 Text(task.title)
                                     .strikethrough(isDone)
                                     .frame(maxWidth: .infinity, alignment: .leading)

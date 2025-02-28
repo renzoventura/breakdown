@@ -13,7 +13,8 @@ struct TaskListHeaderView: View {
         HStack {
             Text("Your Projects (\(viewModel.filteredList.count))")                .font(FontStyles.headline)
             Spacer()
-        }    }
+        }
+    }
 }
 
 #Preview {
