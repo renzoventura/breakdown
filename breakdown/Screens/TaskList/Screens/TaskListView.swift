@@ -13,42 +13,47 @@ struct TaskListView: View {
     @State private var showingAddTodo = false
 
     var body: some View {
-        NavigationView {
-            VStack (alignment: .center) {
-                HStack {
-                    Text("Hello User").font(FontStyles.subtitle)
-                    Spacer()
-                }
-                HStack {
-                    Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
-                    Spacer()
-          
-                }
-                if viewModel.tasks.isEmpty {
-                    VStack {
-                        Spacer()
-                        Text("No tasks")
-                        Text("yet...")
+        VStack {
+            NavigationView {
+                VStack (alignment: .center) {
+                    HStack {
+                        Text("Hello User").font(FontStyles.subtitle)
                         Spacer()
                     }
-                } else {
-                    ListOfTasksComponents()
-                    Spacer()
-                    
-                }
-                HStack {
-                    Spacer()
-                    ShowCreateNewTaskButton {
-                        viewModel.resetSliderItem()
-                        showingAddTodo = true
+                    HStack {
+                        Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
+                        Spacer()
+              
                     }
-                    Spacer()
+                    if viewModel.tasks.isEmpty {
+                        VStack {
+                            Spacer()
+                            Text("No tasks")
+                            Text("yet...")
+                            Spacer()
+                        }
+                    } else {
+                        ListOfTasksComponents()
+                        Spacer()
+                        
+                    }
+  
                 }
-            }.padding(.top, 8)
-                .padding(.horizontal, 8)
-        }.sheet(isPresented: $showingAddTodo) {
-            AddTaskView()
+                    .padding(.horizontal, 8)
+            }.sheet(isPresented: $showingAddTodo) {
+                AddTaskView()
+            }
+            Divider()
+            HStack {
+                Spacer()
+                ShowCreateNewTaskButton {
+                    viewModel.resetSliderItem()
+                    showingAddTodo = true
+                }
+                Spacer()
+            }
         }
+
     }
 }
 
