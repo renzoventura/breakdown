@@ -25,12 +25,10 @@ struct AddTaskView: View {
                 .font(FontStyles.caption)
                 .padding(.bottom, 5)
             ZStack(alignment: .topLeading) {
-                // Placeholder text, shown only when the text is empty
-         
                 TextEditor(text:$viewModel.newTodoItem)
                     .cornerRadius(10)
                     .padding( 8)
-                    .frame(width: .infinity, height: 150) // Set fixed width and height
+                    .frame(width: .infinity, height: 150)
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.gray.opacity(0.5), lineWidth: 2)
@@ -39,14 +37,12 @@ struct AddTaskView: View {
                     .font(FontStyles.body)
                 if viewModel.newTodoItem.isEmpty {
                     Text(listOfExamples.randomElement()!)
-                    
                     .font(FontStyles.body)
                         .foregroundColor(.gray)
                         .padding(.top, 15)
                         .padding(.leading, 11)
-                    
                     .padding(.trailing, 8)
-                    
+                    .allowsHitTesting(false)
                 }
             }
 
