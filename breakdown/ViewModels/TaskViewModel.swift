@@ -46,7 +46,7 @@ class TaskViewModel : ObservableObject {
         if (!newTodoItem.isEmpty) { 
             self.errorMessageAddTask = nil 
             self.isLoading = true
-            var taskName = newTodoItem.replacingOccurrences(of: "\n", with: " ")
+            let taskName = newTodoItem.replacingOccurrences(of: "\n", with: " ")
             taskRepository.fetchSubTasks(for: taskName, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in
                 DispatchQueue.main.async {
                     if(subTasks != nil && !(subTasks?.isEmpty ?? true)) {
