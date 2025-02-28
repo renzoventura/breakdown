@@ -22,10 +22,7 @@ struct TaskListView: View {
                 HStack {
                     Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
                     Spacer()
-                    ShowCreateNewTaskButton {
-                        viewModel.resetSliderItem()
-                        showingAddTodo = true
-                    }
+          
                 }
                 if viewModel.tasks.isEmpty {
                     VStack {
@@ -37,8 +34,18 @@ struct TaskListView: View {
                 } else {
                     ListOfTasksComponents()
                     Spacer()
+                    
                 }
-            }.padding()
+                HStack {
+                    Spacer()
+                    ShowCreateNewTaskButton {
+                        viewModel.resetSliderItem()
+                        showingAddTodo = true
+                    }
+                    Spacer()
+                }
+            }.padding(.top, 8)
+                .padding(.horizontal, 8)
         }.sheet(isPresented: $showingAddTodo) {
             AddTaskView()
         }

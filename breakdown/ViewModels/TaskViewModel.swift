@@ -8,7 +8,7 @@
 import Foundation
 
 class TaskViewModel : ObservableObject {
-    @Published var tasks: [Task] = mockTasks
+    @Published var tasks: [Task] = multipleMocks
     @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
     @Published var errorMessageAddTask : String?
     @Published var isLoading : Bool = false;
@@ -22,7 +22,7 @@ class TaskViewModel : ObservableObject {
     
     func addTask(completion: @escaping () -> Void) {
         let numberToBreakDown = currSelectedSliderItem.numberOfItems
-        if (!newTodoItem.isEmpty) {
+        if (!newTodoItem.isEmpty) { 
             self.errorMessageAddTask = nil
             self.isLoading = true
             taskRepository.fetchSubTasks(for: newTodoItem, taskNumber: String(numberToBreakDown)) { [weak self] subTasks in

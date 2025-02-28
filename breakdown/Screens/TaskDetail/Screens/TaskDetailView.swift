@@ -25,10 +25,6 @@ struct TaskDetailView: View {
                     Spacer()
                 }
                 Text(String(task.calculatePercentage()))
-//                Text(String(task.total()))
-//                ProgressView(value: task.calculatePercentage())
-//                    .progressViewStyle(LinearProgressViewStyle())
-//                    .padding(.vertical, 1)
                 ScrollView {
                     VStack {
                         ForEach(task.subTasks.indices, id: \.self) { index in
@@ -42,7 +38,7 @@ struct TaskDetailView: View {
                                 Spacer()
                             }
                         }
-                    }
+                    } 
                 }
                 Spacer()
             }.padding()
