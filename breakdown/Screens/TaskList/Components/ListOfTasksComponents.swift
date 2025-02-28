@@ -41,10 +41,13 @@ struct ListOfTasksComponents: View {
                                 HStack {
                                     HStack(alignment: .bottom) {
                                         Text("\(task.getProgressOfSubTasks())")
-                                            .font(FontStyles.body)
+                                            .font(FontStyles.caption)
                                     }
                                     Spacer()
                                     Text("\(String(task.calculatePercentage()))%")
+                                    
+                                        .font(FontStyles.caption)
+                                    
                                 }
                             }
                         }

@@ -17,7 +17,7 @@ let listOfComplexityItems: [ComplexitySliderItem] = [
     ComplexitySliderItem(title: "Extreme", numberOfItems: 20)
 ]
 
-let mockTasks : [Task] = smallMocks
+let mockTasks : [Task] = multipleMocks
 
 let smallMocks: [Task] = [
     Task(

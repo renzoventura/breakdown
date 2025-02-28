@@ -15,28 +15,33 @@ struct TaskDetailView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text(task.title).font(FontStyles.largeTitle)
+                    Text(task.title)
+                        .multilineTextAlignment(.leading)
+                        .font(FontStyles.headline)
                     Spacer()
                 }.padding(.bottom, 4)
-                 HStack {
-                    Text("Tasks: ")
-                    Text("\(task.getProgressOfSubTasks())")
-                        .font(FontStyles.subtitle)
+                ProgressView(value: task.calculateProgress())
+                    .progressViewStyle(LinearProgressViewStyle())
+                    .scaleEffect(x: 1, y: 2, anchor: .center)
+                    .padding(.vertical, 3)
+                    .accentColor(.black)
+                HStack {
+                    HStack(alignment: .bottom) {
+                        Text("\(task.getProgressOfSubTasks())")
+                            .font(FontStyles.caption)
+                    }
                     Spacer()
+                    Text("\(String(task.calculatePercentage()))%")
+                        .font(FontStyles.caption)
                 }
-                Text(String(task.calculatePercentage()))
                 ScrollView {
-                    VStack {
+                    VStack (spacing: 12){
                         ForEach(task.subTasks.indices, id: \.self) { index in
-                            HStack {
-                                CustomCheckbox(isChecked: $task.subTasks[index].isDone, action: {
-                                    viewModel.toggleSubTask(withParentTaskId: task.id,
-                                                            withSubTaskId: task.subTasks[index].id
-                                    )
-                                })
-                                Text(task.subTasks[index].title).strikethrough(task.isDone)
-                                Spacer()
-                            }
+                            SubTaskView(subTask: $task.subTasks[index], action: {
+                                viewModel.toggleSubTask(withParentTaskId: task.id,
+                                                        withSubTaskId: task.subTasks[index].id
+                                )
+                            })
                         }
                     } 
                 }
@@ -49,3 +54,4 @@ struct TaskDetailView: View {
 #Preview {
     TaskDetailView(task: mockViewModel.tasks.first!).environmentObject(mockViewModel)
 }
+
