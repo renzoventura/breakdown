@@ -9,7 +9,12 @@ import SwiftUI
 
 struct NoTaskYetView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Spacer()
+            Text("No tasks")
+            Text("yet...")
+            Spacer()
+        }
     }
 }
 

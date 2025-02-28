@@ -11,38 +11,53 @@ struct ListOfTasksComponents: View {
     @EnvironmentObject private var viewModel : TaskViewModel
     var body: some View {
         ScrollView {
-            ForEach(viewModel.tasks) { task in
+            ForEach(viewModel.filteredList) { task in
                 LazyVStack(alignment: .leading, content: {
                     NavigationLink(destination: TaskDetailView(task: task)) {
+                        var isDone = task.isAllTasksDone()
                         VStack (alignment: .leading){
-                            Text(task.title).strikethrough(task.isDone)
+                            Text(task.title)
+                                .strikethrough(isDone)
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .multilineTextAlignment(.leading)
                                 .font(FontStyles.subtitleBold)
                                 .padding(.bottom, 2)
-                            Text(task.getFormattedDate())
-                                .font(FontStyles.smallCaption)
-                            ProgressView(value: task.calculateProgress())
-                                .progressViewStyle(LinearProgressViewStyle())
-                                .scaleEffect(x: 1, y: 2, anchor: .center)
-                                .padding(.vertical, 3)
                             HStack {
-                                HStack(alignment: .bottom) {
-                                    Text("\(task.getProgressOfSubTasks())")
-                                        .font(FontStyles.body)
-                                }
+                                Text(task.getFormattedDate())
+                                    .font(FontStyles.smallCaption)
                                 Spacer()
-                                Text("\(String(task.calculatePercentage()))%")
+                                if isDone {
+                                    Text("\(String(task.subTasks.count)) Tasks")
+                                        .font(FontStyles.smallCaption)
+                                }
                             }
-                        
-                             
+                            if !isDone {
+                                ProgressView(value: task.calculateProgress())
+                                    .progressViewStyle(LinearProgressViewStyle())
+                                    .scaleEffect(x: 1, y: 2, anchor: .center)
+                                    .padding(.vertical, 3)
+                                HStack {
+                                    HStack(alignment: .bottom) {
+                                        Text("\(task.getProgressOfSubTasks())")
+                                            .font(FontStyles.body)
+                                    }
+                                    Spacer()
+                                    Text("\(String(task.calculatePercentage()))%")
+                                }
+                            }
                         }
                         .padding(8)
-                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(greyColor, lineWidth: 1))
+                        .overlay(RoundedRectangle(cornerRadius: 8)
+//                            .stroke(isDone ? .blue : greyColor, lineWidth: 3)
+                            .stroke(greyColor, lineWidth: 3)
+                        )
+//                        .foregroundColor(isDone ? .blue : .black)
+                        .contentShape(Rectangle())
+                        .transition(.move(edge: .trailing))
                     }
+                    .cornerRadius(8)
                     .buttonStyle(PlainButtonStyle())
-//                    .padding(.bottom, 0.2)
-
+ 
                 })
                     .frame(maxWidth: .infinity)
         }

@@ -17,7 +17,9 @@ let listOfComplexityItems: [ComplexitySliderItem] = [
     ComplexitySliderItem(title: "Extreme", numberOfItems: 20)
 ]
 
-let mockTasks: [Task] = [
+let mockTasks : [Task] = smallMocks
+
+let smallMocks: [Task] = [
     Task(
         title: "Complete SwiftUI App",
         subTasks: [
@@ -33,8 +35,16 @@ let mockTasks: [Task] = [
             Task(title: "Rehearse Talk"),
         ]
     ),
+    Task(
+        title: "Organize Workspace",
+        subTasks: [
+            Task(title: "Declutter Desk", isDone: true),
+            Task(title: "Sort Cables", isDone: true),
+            Task(title: "Clean Keyboard and Monitor", isDone: true),
+        ]
+    ),
 ]
-
+ 
 
 
 let multipleMocks: [Task] = [
@@ -66,8 +76,8 @@ let multipleMocks: [Task] = [
     Task(
         title: "Prepare for Presentation",
         subTasks: [
-            Task(title: "Create Slides"),
-            Task(title: "Rehearse Talk"),
+            Task(title: "Create Slides", isDone: true),
+            Task(title: "Rehearse Talk", isDone: true),
         ]
     ),
     Task(

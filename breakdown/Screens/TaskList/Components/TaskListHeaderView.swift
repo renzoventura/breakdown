@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct TaskListHeaderView: View {
+    @EnvironmentObject private var viewModel : TaskViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+        HStack {
+            Text("Hello User").font(FontStyles.subtitle)
+            Spacer()
+        }
+        HStack {
+            Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
+            Spacer()
+        }    }
 }
 
 #Preview {

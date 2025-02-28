@@ -16,26 +16,12 @@ struct TaskListView: View {
         VStack (spacing: 0){
             NavigationView {
                 VStack (alignment: .center) {
-                    HStack {
-                        Text("Hello User").font(FontStyles.subtitle)
-                        Spacer()
-                    }
-                    HStack {
-                        Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
-                        Spacer()
-              
-                    }
+                    TaskListHeaderView()
+                    FilterButtonsView()
                     if viewModel.tasks.isEmpty {
-                        VStack {
-                            Spacer()
-                            Text("No tasks")
-                            Text("yet...")
-                            Spacer()
-                        }
+                        NoTaskYetView()
                     } else {
                         ListOfTasksComponents()
-                        
-                        
                     }
   
                 }

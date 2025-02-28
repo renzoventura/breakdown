@@ -8,17 +8,31 @@
 import Foundation
 
 class TaskViewModel : ObservableObject {
-    @Published var tasks: [Task] = multipleMocks
+    @Published var tasks: [Task] = mockTasks
     @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
     @Published var errorMessageAddTask : String?
     @Published var isLoading : Bool = false;
     @Published var newTodoItem : String = ""
+    @Published var isCompletedFilter : Bool = false;
 
     private let taskRepository = TaskRepository()
     
     func resetSliderItem() {
         currSelectedSliderItem = listOfComplexityItems.first!;
     }
+    
+    var filteredList: [Task] {
+        isCompletedFilter ? completedTasks : incompleteTasks
+    }
+    // Getter for filtered tasks
+     var incompleteTasks: [Task] {
+         tasks.filter { !$0.isAllTasksDone() }
+     }
+
+     // Getter for completed tasks
+     var completedTasks: [Task] {
+         tasks.filter { $0.isAllTasksDone() }
+     }
     
     func addTask(completion: @escaping () -> Void) {
         let numberToBreakDown = currSelectedSliderItem.numberOfItems

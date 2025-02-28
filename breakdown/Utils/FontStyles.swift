@@ -16,6 +16,7 @@ struct FontStyles {
 
     static let subtitleBold = Font.system(size: 20, weight: .semibold)
     static let body = Font.system(size: 16, weight: .regular)
+    static let boldBody = Font.system(size: 16, weight: .bold)
     static let callout = Font.system(size: 15, weight: .regular)
     static let caption = Font.system(size: 14, weight: .light)
     static let smallCaption = Font.system(size: 12, weight: .thin)

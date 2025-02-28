@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct FilterButtonsView: View {
+    @EnvironmentObject private var viewModel : TaskViewModel
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            HStack {
+                FilterButton(
+                    toggled: !viewModel.isCompletedFilter, text: "In Progress", onTap: {
+                        viewModel.isCompletedFilter.toggle()
+                    }
+                )
+                FilterButton(
+                    toggled: viewModel.isCompletedFilter, text: "Done", onTap: {
+                        viewModel.isCompletedFilter.toggle()
+                    }
+                )
+                Spacer()
+            }
+        }
     }
 }
 

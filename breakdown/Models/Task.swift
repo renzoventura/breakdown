@@ -62,6 +62,14 @@ class Task: Identifiable {
         
         return (completed / total)
     }
+    
+    func isAllTasksDone() -> Bool {
+        let total = Double(subTasks.count)
+        let completed = Double(subTasks.filter { $0.isDone }.count)
+        return total == completed;
+    }
+    
+    
 }
 
  

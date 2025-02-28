@@ -11,6 +11,6 @@ import SwiftUI
 // Global mock ViewModel for previews
 let mockViewModel: TaskViewModel = {
     let viewModel = TaskViewModel()
-    viewModel.tasks = multipleMocks
+    viewModel.tasks = mockTasks
     return viewModel
 }()
