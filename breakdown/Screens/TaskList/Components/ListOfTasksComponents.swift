@@ -41,9 +41,9 @@ struct ListOfTasksComponents: View {
                         .overlay(RoundedRectangle(cornerRadius: 8).stroke(greyColor, lineWidth: 1))
                     }
                     .buttonStyle(PlainButtonStyle())
-                    .padding(.bottom, 0.2)
+//                    .padding(.bottom, 0.2)
 
-                }).padding(.vertical, 3)
+                })
                     .frame(maxWidth: .infinity)
         }
 

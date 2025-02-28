@@ -13,7 +13,7 @@ struct TaskListView: View {
     @State private var showingAddTodo = false
 
     var body: some View {
-        VStack {
+        VStack (spacing: 0){
             NavigationView {
                 VStack (alignment: .center) {
                     HStack {
@@ -34,7 +34,7 @@ struct TaskListView: View {
                         }
                     } else {
                         ListOfTasksComponents()
-                        Spacer()
+                        
                         
                     }
   
@@ -50,8 +50,9 @@ struct TaskListView: View {
                     viewModel.resetSliderItem()
                     showingAddTodo = true
                 }
+                
                 Spacer()
-            }
+            }.padding(.top, 8)
         }
 
     }
