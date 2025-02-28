@@ -9,7 +9,7 @@ import Foundation
 
 class TaskViewModel : ObservableObject {
     @Published var tasks: [Task] = mockTasks
-    @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems.first!;
+    @Published var currSelectedSliderItem : ComplexitySliderItem = listOfComplexityItems[1];
     @Published var errorMessageAddTask : String?
     @Published var isLoading : Bool = false;
     @Published var newTodoItem : String = ""
@@ -18,7 +18,7 @@ class TaskViewModel : ObservableObject {
     private let taskRepository = TaskRepository()
     
     func resetSliderItem() {
-        currSelectedSliderItem = listOfComplexityItems.first!;
+        currSelectedSliderItem = listOfComplexityItems[1];
     }
     
     var filteredList: [Task] {

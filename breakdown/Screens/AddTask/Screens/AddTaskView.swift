@@ -14,21 +14,47 @@ struct AddTaskView: View {
 
     var body: some View {
         VStack (alignment: .leading, content:{
-            CloseButton(action: {
-                presentationMode.wrappedValue.dismiss()
-            })
-            Text("Create new task").font(FontStyles.largeTitle)
-            TextField("Describe your task", text: $viewModel.newTodoItem)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 16)
+            HStack {
+                Text("New task").font(FontStyles.largeTitle)
+                Spacer()
+                CloseButton(action: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+            }
+//            TextField("Describe your task", text: $viewModel.newTodoItem)
+//                .padding(.horizontal, 16)
+//                .padding(.vertical, 16)
+//                .background(
+//                    RoundedRectangle(cornerRadius: 25)
+//                        .stroke(Color.gray.opacity(0.5), lineWidth: 2)
+//                )
+//                .frame(maxWidth: .infinity)
+//
+            Text("Describe your task below...")
+                .font(FontStyles.caption)
+                .padding(.bottom, 5)
+            TextEditor(text:$viewModel.newTodoItem)
+                .cornerRadius(10)
+                .padding( 8)
+                .frame(width: .infinity, height: 150) // Set fixed width and height
                 .background(
-                    RoundedRectangle(cornerRadius: 25)
+                    RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.gray.opacity(0.5), lineWidth: 2)
                 )
-                .frame(maxWidth: .infinity)
+                .cornerRadius(10) // Rounded corners
+                .font(FontStyles.body)
+//                       .padding(.horizontal)
             ComplexitySlider()
-            Text("Level of complexity: \(viewModel.currSelectedSliderItem.title)")
-            Text("Lets break your task down to \(String(viewModel.currSelectedSliderItem.numberOfItems)) steps")
+            Text("Your task is \(viewModel.currSelectedSliderItem.title)")
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
+                .font(FontStyles.calloutBold)
+                .padding(.bottom, 5)
+            Text("So We'll break it down to \(String(viewModel.currSelectedSliderItem.numberOfItems)) steps")
+                .frame(maxWidth: .infinity)
+                .multilineTextAlignment(.center)
+                .font(FontStyles.calloutBold)
+            Spacer()
             if let error = viewModel.errorMessageAddTask {
                 Text(error)
                     .font(.caption)
@@ -60,7 +86,6 @@ struct AddTaskView: View {
                 }
             }
        
-            Spacer()
         }).padding()
     }
 }

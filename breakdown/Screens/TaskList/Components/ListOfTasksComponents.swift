@@ -14,7 +14,7 @@ struct ListOfTasksComponents: View {
             ForEach(viewModel.filteredList) { task in
                 LazyVStack(alignment: .leading, content: {
                     NavigationLink(destination: TaskDetailView(task: task)) {
-                        var isDone = task.isAllTasksDone()
+                        let isDone = task.isAllTasksDone()
                         VStack (alignment: .leading){
                             Text(task.title)
                                 .strikethrough(isDone)

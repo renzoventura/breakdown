@@ -28,6 +28,8 @@ struct TaskListView: View {
                     .padding(.horizontal, 8)
             }.sheet(isPresented: $showingAddTodo) {
                 AddTaskView()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .presentationDetents([.medium])
             }
             Divider()
             HStack {

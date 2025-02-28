@@ -8,11 +8,11 @@
 import SwiftUI
 struct ComplexitySlider: View {
     @EnvironmentObject private var viewModel : TaskViewModel
-    @State private var sliderValue: Double = 0.0
+    @State private var sliderValue: Double = 1.0
 
     var body: some View {
         HStack {
-            Text("Minimal")
+            Text("😌").font(FontStyles.largeTitle)
             Slider(
                 value: $sliderValue,
                 in: 0...Double(listOfComplexityItems.count - 1) ,
@@ -21,8 +21,7 @@ struct ComplexitySlider: View {
                     viewModel.currSelectedSliderItem = listOfComplexityItems[Int(sliderValue)]
                 }
             )
-            .padding()
-            Text("Complex")
+            Text("🤯").font(FontStyles.largeTitle)
         }
     }
 }
@@ -31,4 +30,4 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
-}
+} 

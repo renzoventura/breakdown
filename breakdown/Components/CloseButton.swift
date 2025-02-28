@@ -14,11 +14,10 @@ struct CloseButton: View {
             Image(systemName: "xmark")
                 .font(.system(size: 12, weight: .bold))
                 .foregroundColor(.black)
-                .frame(width: 40, height: 40)
+                .frame(width: 30, height: 30)
                 .background(.white)
                 .clipShape(Circle())
-                .shadow(color: .gray.opacity(0.5), radius: 5, x: 0, y: 3)
-            
+                .overlay(Circle().stroke(.black, lineWidth: 1))
         }
     }
 }

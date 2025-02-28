@@ -20,11 +20,8 @@ class TaskRepository {
             return
         }
         
-        print(url)
         
-        let prompt : String = "Breakdown this task into \(taskNumber) simple to do items: \(task) = str\n\n**Return only the list of to-do items as a JSON array.**"
-        
-        print(prompt)
+        let prompt : String = "Please break down the task \"\(task)\" into \(taskNumber) simple, actionable to-do items. Return the result as a JSON array of strings, where each string represents a to-do item."
 
         let requestBody: [String: Any] = [
             "contents": [
