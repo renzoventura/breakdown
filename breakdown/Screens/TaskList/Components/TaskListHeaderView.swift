@@ -11,11 +11,7 @@ struct TaskListHeaderView: View {
     @EnvironmentObject private var viewModel : TaskViewModel
     var body: some View {
         HStack {
-            Text("Hello User").font(FontStyles.subtitle)
-            Spacer()
-        }
-        HStack {
-            Text("Your Projects (\(viewModel.tasks.count))").font(FontStyles.largeTitle)
+            Text("Your Projects (\(viewModel.filteredList.count))")                .font(FontStyles.headline)
             Spacer()
         }    }
 }

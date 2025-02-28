@@ -20,7 +20,8 @@ struct ComplexitySlider: View {
                 onEditingChanged: { _ in
                     viewModel.currSelectedSliderItem = listOfComplexityItems[Int(sliderValue)]
                 }
-            )
+            ).accentColor(.black)  // Set the slider thumb and track color to black
+                .frame(height: 50)
             Text("🤯").font(FontStyles.largeTitle)
         }
     }

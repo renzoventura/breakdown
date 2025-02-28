@@ -11,6 +11,7 @@ import SwiftUI
 let primaryColor = Color(hex: "D1A28B")
 let secondaryColor = Color(hex: "E6D9CB")
 let greyColor = Color(hex: "D9D9D9")
+let airBlue = Color(hex: "#98C9E7")
 
 var allColors : [[Color]] = [basicPalette, earthyPalette, naturePalette, seaPalette, sunsetPalette,]
 

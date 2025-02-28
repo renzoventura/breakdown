@@ -22,6 +22,7 @@ struct ListOfTasksComponents: View {
                                 .multilineTextAlignment(.leading)
                                 .font(FontStyles.subtitleBold)
                                 .padding(.bottom, 2)
+                                .foregroundColor(isDone ? .gray : .black)
                             HStack {
                                 Text(task.getFormattedDate())
                                     .font(FontStyles.smallCaption)
@@ -36,6 +37,7 @@ struct ListOfTasksComponents: View {
                                     .progressViewStyle(LinearProgressViewStyle())
                                     .scaleEffect(x: 1, y: 2, anchor: .center)
                                     .padding(.vertical, 3)
+                                    .accentColor(.black)
                                 HStack {
                                     HStack(alignment: .bottom) {
                                         Text("\(task.getProgressOfSubTasks())")

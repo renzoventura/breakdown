@@ -22,7 +22,7 @@ struct FilterButton: View {
             Text(text)
                 .font(FontStyles.boldBody)
                 .frame(width: buttonWidth, height: buttonHeight) // Fixed width and height
-                .background(toggled ? Color.blue : Color.white)
+                .background(toggled ? .black : Color.white)
                 .foregroundColor(toggled ? .white : .gray)
                 .cornerRadius(8)
                 .overlay(

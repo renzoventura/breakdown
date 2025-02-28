@@ -62,7 +62,6 @@ struct AddTaskView: View {
                 + Text(" steps")
                     .font(FontStyles.callout)
             }         .frame(maxWidth: .infinity, alignment: .center)
-            Spacer()
             if let error = viewModel.errorMessageAddTask {
                 Text(error)
                     .font(.caption)
@@ -82,16 +81,16 @@ struct AddTaskView: View {
                         presentationMode.wrappedValue.dismiss()
                     })
                 }) {
-                    Text("Break down task 🔥")
+                    Text("Break down 🔥")
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(Color.black)
                         .cornerRadius(25)
                         .shadow(color: .gray.opacity(0.3), radius: 5, x: 0, y: 3)
-                }
+                } 
             }
        
         }).padding()

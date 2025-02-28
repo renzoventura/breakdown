@@ -15,12 +15,16 @@ struct FilterButtonsView: View {
             HStack {
                 FilterButton(
                     toggled: !viewModel.isCompletedFilter, text: "In Progress", onTap: {
-                        viewModel.isCompletedFilter.toggle()
+                        if (viewModel.isCompletedFilter) {
+                            viewModel.isCompletedFilter.toggle()
+                        }
                     }
                 )
                 FilterButton(
                     toggled: viewModel.isCompletedFilter, text: "Done", onTap: {
-                        viewModel.isCompletedFilter.toggle()
+                        if(!viewModel.isCompletedFilter) {
+                            viewModel.isCompletedFilter.toggle()
+                        }
                     }
                 )
                 Spacer()
