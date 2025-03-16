@@ -11,7 +11,9 @@ struct AddTaskView: View {
     //what is this code doing? @Environment the (/ etc)
     @Environment(\ .presentationMode) var presentationMode
     @EnvironmentObject private var viewModel : TaskViewModel
-
+    
+    // Add this focus state property
+    @FocusState private var isTextFieldFocused: Bool
     var body: some View {
         VStack (alignment: .leading, content:{
             HStack {
@@ -35,6 +37,7 @@ struct AddTaskView: View {
                     )
                     .cornerRadius(10)
                     .font(FontStyles.body)
+                    .focused($isTextFieldFocused)
                 if viewModel.newTodoItem.isEmpty {
                     HintText()
                 }
@@ -88,6 +91,12 @@ struct AddTaskView: View {
             }
        
         }).padding()
+            .onAppear {
+                // Small delay to ensure the view is fully loaded before focusing
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isTextFieldFocused = true
+                }
+            }
     }
 }
 
