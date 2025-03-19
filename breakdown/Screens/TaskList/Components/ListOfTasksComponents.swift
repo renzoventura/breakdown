@@ -20,12 +20,14 @@ struct ListOfTasksComponents: View {
                 Spacer()
             }
             .padding(.bottom, 16)
-            .frame(height: .infinity)
+//            .frame(height: .infinity)
         } else {
             ScrollView {
                 ForEach(viewModel.filteredList) { task in
                     LazyVStack(alignment: .leading, content: {
-                        NavigationLink(destination: TaskDetailView()) {
+                            NavigationLink(
+                                destination: TaskDetailView(taskId: task.id)
+                            ) {
                             let isDone = task.isAllTasksDone()
                             VStack (alignment: .leading) {
                                 Text(task.title)

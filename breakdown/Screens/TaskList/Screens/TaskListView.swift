@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct TaskListView: View {
-    @EnvironmentObject private var viewModel : TaskViewModel
-    @State private var newTitle : String = ""
+    @EnvironmentObject private var viewModel: TaskViewModel
+    @State private var newTitle: String = ""
     @State private var showingAddTodo = false
 
     var body: some View {
-        VStack (spacing: 0){
-            NavigationView {
-                VStack (alignment: .center) {
+        NavigationView {
+            VStack(spacing: 0) {
+                VStack(alignment: .center) {
                     TaskListHeaderView()
                     FilterButtonsView()
                     if viewModel.tasks.isEmpty {
@@ -23,9 +23,20 @@ struct TaskListView: View {
                     } else {
                         ListOfTasksComponents()
                     }
-  
                 }
-                    .padding(.horizontal, 8)
+                .padding(.horizontal, 8)
+
+                Divider()
+
+                HStack {
+                    Spacer()
+                    ShowCreateNewTaskButton {
+                        viewModel.resetSliderItem()
+                        showingAddTodo = true
+                    }
+                    Spacer()
+                }
+                .padding(.top, 8)
             }
             .tint(.black)
             .sheet(isPresented: $showingAddTodo) {
@@ -33,20 +44,10 @@ struct TaskListView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .presentationDetents([.medium])
             }
-            Divider()
-            HStack {
-                Spacer()
-                ShowCreateNewTaskButton {
-                    viewModel.resetSliderItem()
-                    showingAddTodo = true
-                }
-                
-                Spacer()
-            }.padding(.top, 8)
         }
-
     }
 }
+
 
 #Preview {
     TaskListView().environmentObject(mockViewModel)

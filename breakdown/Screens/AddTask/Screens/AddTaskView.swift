@@ -30,7 +30,7 @@ struct AddTaskView: View {
                 TextEditor(text:$viewModel.newTodoItem)
                     .cornerRadius(10)
                     .padding( 8)
-                    .frame(width: .infinity, height: 150)
+                    .frame( height: 120)
                     .background(
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color.gray.opacity(0.5), lineWidth: 2)
@@ -93,7 +93,7 @@ struct AddTaskView: View {
         }).padding()
             .onAppear {
                 // Small delay to ensure the view is fully loaded before focusing
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                DispatchQueue.main.asyncAfter(deadline: .now()) {
                     isTextFieldFocused = true
                 }
             }

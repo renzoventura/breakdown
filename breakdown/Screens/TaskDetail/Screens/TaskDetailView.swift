@@ -9,11 +9,16 @@ import SwiftUI
 
 struct TaskDetailView: View {
     @EnvironmentObject var viewModel: TaskViewModel
+    let taskId: UUID
+    
+    private var task: Task? {
+        return viewModel.getTaskById(withId: taskId)
+    }
     
     var body: some View {
         NavigationView {
             VStack {
-                if let $task = viewModel.currentSelectedTask { // Unwrap safely
+                if let $task = task {
                     HStack {
                         Text($task.title)
                             .multilineTextAlignment(.leading)
@@ -57,6 +62,6 @@ struct TaskDetailView: View {
 }
 
 #Preview {
-    TaskDetailView().environmentObject(mockViewModel)
+    TaskDetailView(taskId: mockViewModel.tasks.first!.id).environmentObject(mockViewModel)
 }
 

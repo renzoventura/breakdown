@@ -15,12 +15,26 @@ struct ListOfSubTasks: View {
         if let listOfSubTasks = viewModel.currentSelectedTask?.subTasks {
             ScrollView {
                 VStack(spacing: 12) {
-                    ForEach(Array(listOfSubTasks.enumerated()), id: \.offset) { index, subtask in
-                        // Use the subtask directly here
-                        //THIS Binding(get: { subtask }, set: { _ in }) i still do not understand lol
-                        SubTaskView(subTask: Binding(get: { subtask }, set: { _ in })) {
-                            viewModel.toggleSubTask(withSubTaskId: Binding(get: { subtask }, set: { _ in }).id)
+                    // Sort the subtasks so that completed ones are at the bottom
+                    let sortedSubTasks = listOfSubTasks.sorted { !$0.isDone && $1.isDone }
+                    
+                    ForEach(sortedSubTasks, id: \.id) { subtask in
+                        // Check if the current subtask is the first completed one
+                        if subtask.isDone && sortedSubTasks.first(where: { $0.isDone })?.id == subtask.id {
+                            Text("Completed")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .padding(.top, 8) // Add some spacing above the separator
                         }
+                        
+                        SubTaskView(subTask: Binding(get: { subtask }, set: { _ in })) {
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                                viewModel.toggleSubTask(withSubTaskId: subtask.id)
+                            }
+                        }
+                        .transition(.opacity.combined(with: .move(edge: .bottom)))
+                        .animation(.spring(response: 0.5, dampingFraction: 0.7), value: subtask.isDone)
+                        .id(subtask.id) // Important: gives SwiftUI a stable identity for animations
                     }
                 }
             }
